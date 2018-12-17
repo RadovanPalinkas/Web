@@ -1,0 +1,6 @@
+namespace WebovaAplikace.Areas.HelpPage.ModelDescriptions
+{
+    public class DictionaryModelDescription : KeyValuePairModelDescription
+    {
+    }
+}
