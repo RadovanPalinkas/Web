@@ -222,21 +222,27 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812180000479_Initial.cs" />
-    <Compile Include="Migrations\201812180000479_Initial.Designer.cs">
-      <DependentUpon>201812180000479_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201812182042060_Initial.cs" />
+    <Compile Include="Migrations\201812182042060_Initial.Designer.cs">
+      <DependentUpon>201812182042060_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812182047113_fixProduct.cs" />
+    <Compile Include="Migrations\201812182047113_fixProduct.Designer.cs">
+      <DependentUpon>201812182047113_fixProduct.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Department.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Product.cs" />
-    <Compile Include="Repository\IRepositories\ICustomerRepository.cs" />
-    <Compile Include="Repository\IRepositories\IRepository.cs" />
+    <Compile Include="Models\ProductCategory.cs" />
+    <Compile Include="Repositories\Interfaces\ICustomerRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository\Repositories\CustomerRepository.cs" />
-    <Compile Include="Repository\Repositories\Repository.cs" />
+    <Compile Include="Repositories\Implementations\CustomerRepository.cs" />
+    <Compile Include="Repositories\Implementations\Repository.cs" />
     <Compile Include="Services\ServisaWebApi.cs" />
     <Compile Include="UnitsOfWork\Interfaces\IUnitOfWork.cs" />
     <Compile Include="UnitsOfWork\Implementations\UnitOfWork.cs" />
@@ -392,8 +398,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201812180000479_Initial.resx">
-      <DependentUpon>201812180000479_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201812182042060_Initial.resx">
+      <DependentUpon>201812182042060_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812182047113_fixProduct.resx">
+      <DependentUpon>201812182047113_fixProduct.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

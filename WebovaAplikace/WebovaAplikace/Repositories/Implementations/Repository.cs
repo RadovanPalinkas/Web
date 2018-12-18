@@ -1,19 +1,20 @@
-﻿using System;
+﻿using Infrastructure;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Web;
-using WebovaAplikace.Repository.IRepositories;
+using WebovaAplikace.Repositories.Interfaces;
 
 
-namespace WebovaAplikace.Repository.Repositories
+namespace WebovaAplikace.Repositories.Implementations
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        protected readonly DbContext Context;
+        protected readonly EshopDataEntities Context;
 
-        public Repository(DbContext context)
+        public Repository(EshopDataEntities context)
         {
             Context = context;
         }

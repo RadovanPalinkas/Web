@@ -4,7 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Web;
 
-namespace WebovaAplikace.Repository.IRepositories
+namespace WebovaAplikace.Repositories.Interfaces
 {
     public interface IRepository <T> where T :class
     {

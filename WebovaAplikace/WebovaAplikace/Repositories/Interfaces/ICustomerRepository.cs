@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using System.Web;
 using WebovaAplikace.Models;
 
-namespace WebovaAplikace.Repository.IRepositories
+namespace WebovaAplikace.Repositories.Interfaces
 {
     public interface ICustomerRepository : IRepository<Customer>
     {

@@ -7,6 +7,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using WebovaAplikace.Common.DataFirst;
 
 namespace WebovaAplikace
 {
@@ -14,7 +15,8 @@ namespace WebovaAplikace
     {
         protected void Application_Start()
         {
-            Database.SetInitializer<WebovaAplikace.Common.DataFirst.DatabazeWebContext>(null);
+            
+            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<DatabazeWebContext>());
             AreaRegistration.RegisterAllAreas();
             UnityConfig.RegisterComponents();
             GlobalConfiguration.Configure(WebApiConfig.Register);

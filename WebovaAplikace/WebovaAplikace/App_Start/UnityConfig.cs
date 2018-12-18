@@ -2,11 +2,11 @@ using System.Web.Mvc;
 using Unity;
 using Unity.Mvc5;
 using WebovaAplikace.Models;
-using WebovaAplikace.Repository;
-using WebovaAplikace.Repository.IRepositories;
-using WebovaAplikace.Repository.Repositories;
 using WebovaAplikace.UnitsOfWork.Interfaces;
 using WebovaAplikace.UnitsOfWork.Implementations;
+using Infrastructure;
+using WebovaAplikace.Repositories.Interfaces;
+using WebovaAplikace.Repositories.Implementations;
 
 namespace WebovaAplikace
 {
@@ -16,6 +16,7 @@ namespace WebovaAplikace
         {
 			var container = new UnityContainer();
             container.RegisterType<ICustomerRepository, CustomerRepository>();
+            container.RegisterType<EshopDataEntities, EshopDataEntities>();            
             container.RegisterType<IUnitOfWork, UnitOfWork>();
 
 

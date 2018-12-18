@@ -10,10 +10,12 @@ namespace WebovaAplikace.Models
     [Table("Customers")]
     public class Customer
     {
-        public int ID { get; set; }
-        [Column("FirstName")]
-        public string Name { get; set; }
+        public int CustomerId { get; set; }
+        public string FirstName { get; set; }
         public string LastName { get; set; }
         public string City { get; set; }       
+        public string Street { get; set; }
+        public int Number { get; set; }        
+        public int ZipCode { get; set; }       
     }
 }

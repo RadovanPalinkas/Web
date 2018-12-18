@@ -1,20 +1,21 @@
-﻿using System;
+﻿using Infrastructure;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
-using WebovaAplikace.Repository.IRepositories;
-using WebovaAplikace.Repository.Repositories;
+using WebovaAplikace.Repositories.Implementations;
+using WebovaAplikace.Repositories.Interfaces;
 using WebovaAplikace.UnitsOfWork.Interfaces;
 
 namespace WebovaAplikace.UnitsOfWork.Implementations
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly DbContext Context;
+        private readonly EshopDataEntities Context;
         public ICustomerRepository Customers { get; private set; }
 
-        public UnitOfWork(DbContext context)
+        public UnitOfWork(EshopDataEntities context)
         {
             Context = context;
             Customers = new CustomerRepository(Context);

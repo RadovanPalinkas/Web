@@ -12,7 +12,10 @@ namespace WebovaAplikace.Controllers
 {
     public class CustomersController : ApiController
     {
-       
+        public CustomersController()
+        {
+                
+        }
 
         // GET api/values
         

@@ -1,18 +1,20 @@
-﻿using System;
+﻿using Infrastructure;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using WebovaAplikace.Models;
-using WebovaAplikace.Repository.IRepositories;
+using WebovaAplikace.Repositories.Interfaces;
 
-namespace WebovaAplikace.Repository.Repositories
+namespace WebovaAplikace.Repositories.Implementations
 {
     public class CustomerRepository : Repository<Customer>, ICustomerRepository
     {      
-        public CustomerRepository(DbContext context) : base(context)
+        public CustomerRepository(EshopDataEntities context) : base(context)
         {
         }
+
         public IEnumerable<Customer> GetTopBuyers(Func<Customer,bool> customer)
         {
             return Context.Set<Customer>().Where(customer).ToList();
