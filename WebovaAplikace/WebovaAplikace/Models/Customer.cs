@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebovaAplikace.Models
 {
-    [Table("tblCustomers")]
+    [Table("Customers")]
     public class Customer
     {
         public int ID { get; set; }

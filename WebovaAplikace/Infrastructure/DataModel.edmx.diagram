@@ -4,14 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="6a356220c5bc42d8a927b673a08ce381" Name="Diagram1">
-        <EntityTypeShape EntityType="DatabazeProWebModel.C__MigrationHistory" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DatabazeProWebModel.Departments" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="DatabazeProWebModel.Employees" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="DatabazeProWebModel.Products" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="DatabazeProWebModel.tblCustomers" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
-        <AssociationConnector Association="DatabazeProWebModel.FK_dbo_Employees_dbo_Departments_DepartmentId" ManuallyRouted="false" />
-        <AssociationConnector Association="DatabazeProWebModel.Orders" ManuallyRouted="false" />
+      <Diagram DiagramId="f984388ac5ce40578892065279ff04fd" Name="Diagram1">
+        <EntityTypeShape EntityType="EshopDataModel.C__MigrationHistory" Width="1.5" PointX="6.125" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="EshopDataModel.Customers" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EshopDataModel.Departments" Width="1.5" PointX="0.75" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EshopDataModel.Employees" Width="1.5" PointX="3" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EshopDataModel.Products" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="EshopDataModel.FK_dbo_Employees_dbo_Departments_DepartmentId" ManuallyRouted="false" />
+        <AssociationConnector Association="EshopDataModel.Orders" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

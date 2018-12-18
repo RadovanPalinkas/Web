@@ -12,10 +12,10 @@ namespace Infrastructure
     using System;
     using System.Collections.Generic;
     
-    public partial class tblCustomers
+    public partial class Customers
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tblCustomers()
+        public Customers()
         {
             this.Products = new HashSet<Products>();
         }

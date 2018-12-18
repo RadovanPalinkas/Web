@@ -14,7 +14,7 @@ namespace WebovaAplikace
     {
         protected void Application_Start()
         {
-            Database.SetInitializer<WebovaAplikace.Models.CodeFirst.EntityContext>(null);
+            Database.SetInitializer<WebovaAplikace.Common.DataFirst.DatabazeWebContext>(null);
             AreaRegistration.RegisterAllAreas();
             UnityConfig.RegisterComponents();
             GlobalConfiguration.Configure(WebApiConfig.Register);

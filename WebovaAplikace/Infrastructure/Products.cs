@@ -17,7 +17,7 @@ namespace Infrastructure
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Products()
         {
-            this.tblCustomers = new HashSet<tblCustomers>();
+            this.Customers = new HashSet<Customers>();
         }
     
         public int ID { get; set; }
@@ -25,6 +25,6 @@ namespace Infrastructure
         public int Cena { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblCustomers> tblCustomers { get; set; }
+        public virtual ICollection<Customers> Customers { get; set; }
     }
 }

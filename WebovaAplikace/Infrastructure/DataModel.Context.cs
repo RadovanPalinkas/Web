@@ -7,23 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-
-//1)vatvořit takovouto třídu které dědí ze třídy DbContext
-//2)do app.config vložit conection string <connectionStrings> <add name = "EntityContext" connectionString="Data Source=DESKTOP-ECHHB9J\RADOVANSQL;Initial Catalog=DatabazeProWeb; Integrated Security = True" providerName="System.Data.SqlClient"/> </connectionStrings>
-//3)do nuget konzole napsat "enable-migrations"
-//4)do nuget konzole napsat "add-migration nazev"
-//5)----------------------       BEZ NÁSLEDUJÍCÍHO PŘÍKAZU DO KONZOLE SE NIC DO DATABÁZE NEZAPÍŠE        -------------------
-//update-database -ConfigurationTypeName "WebovaAplikace.Migrations.Configuration" -ProjectName "WebovaAplikace" 
-//-ConnectionString "Data Source=DESKTOP-ECHHB9J\RADOVANSQL;Initial Catalog=DatabazeProWeb; Integrated Security = True" -ConnectionProviderName "System.Data.SqlClient"
 namespace Infrastructure
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class DatabazeProWebEntities : DbContext
+    public partial class EshopDataEntities : DbContext
     {
-        public DatabazeProWebEntities(): base("name=DatabazeProWebEntities")
+        public EshopDataEntities()
+            : base("name=EshopDataEntities")
         {
         }
     
@@ -33,9 +26,9 @@ namespace Infrastructure
         }
     
         public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
+        public virtual DbSet<Customers> Customers { get; set; }
         public virtual DbSet<Departments> Departments { get; set; }
         public virtual DbSet<Employees> Employees { get; set; }
         public virtual DbSet<Products> Products { get; set; }
-        public virtual DbSet<tblCustomers> tblCustomers { get; set; }
     }
 }
