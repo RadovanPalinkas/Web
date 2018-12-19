@@ -5,8 +5,6 @@ VisualStudioVersion = 15.0.28010.2050
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebovaAplikace", "WebovaAplikace\WebovaAplikace.csproj", "{1650D60A-EA22-4948-8CEE-D00DF489FE65}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{72F165D6-98C3-44D2-8B39-7CA5CDD63432}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{1650D60A-EA22-4948-8CEE-D00DF489FE65}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1650D60A-EA22-4948-8CEE-D00DF489FE65}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1650D60A-EA22-4948-8CEE-D00DF489FE65}.Release|Any CPU.Build.0 = Release|Any CPU
-		{72F165D6-98C3-44D2-8B39-7CA5CDD63432}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{72F165D6-98C3-44D2-8B39-7CA5CDD63432}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{72F165D6-98C3-44D2-8B39-7CA5CDD63432}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{72F165D6-98C3-44D2-8B39-7CA5CDD63432}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

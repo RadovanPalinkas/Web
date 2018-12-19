@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 
+
 namespace WebovaAplikace
 {
     public static class WebApiConfig
@@ -17,9 +18,10 @@ namespace WebovaAplikace
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "MojeApi/{controller}/{id}",
+                routeTemplate: "Api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+          
         }
     }
 }

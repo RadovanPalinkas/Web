@@ -1,33 +1,31 @@
-﻿using System;
+﻿using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
-using System.Web.Mvc;
 using WebovaAplikace.Models;
-using Newtonsoft.Json;
+using WebovaAplikace.UnitsOfWork.Interfaces;
 
 namespace WebovaAplikace.Controllers
 {
-    public class CustomersController : ApiController
+    public class ValuesController : ApiController
     {
-        public CustomersController()
+        IUnitOfWork iUnitOfWork;
+
+        public ValuesController(IUnitOfWork iUnitOfWork)
         {
-                
+            this.iUnitOfWork = iUnitOfWork;
         }
 
-        // GET api/values
-        
-        public string[] Get()
+        // GET api/values        
+        public IEnumerable<Customer> Get()
         {
-            return new string[] { "customer", "customer" };
+            return iUnitOfWork.Customers.GetAll();
         }
 
         // GET api/values/5
-        public string Get(int id)
+        public Customer Get(int id)
         {
-            return "value";
+            return iUnitOfWork.Customers.Get(id);
         }
 
         // POST api/values

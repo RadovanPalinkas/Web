@@ -1,10 +1,11 @@
-﻿using Infrastructure;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Web;
+using WebovaAplikace.Common.DataFirst;
 using WebovaAplikace.Repositories.Interfaces;
 
 
@@ -12,9 +13,9 @@ namespace WebovaAplikace.Repositories.Implementations
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        protected readonly EshopDataEntities Context;
+        protected readonly DatabazeWebContext Context;
 
-        public Repository(EshopDataEntities context)
+        public Repository(DatabazeWebContext context)
         {
             Context = context;
         }

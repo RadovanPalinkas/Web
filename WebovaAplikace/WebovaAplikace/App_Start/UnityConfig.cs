@@ -1,12 +1,13 @@
 using System.Web.Mvc;
 using Unity;
-using Unity.Mvc5;
 using WebovaAplikace.Models;
 using WebovaAplikace.UnitsOfWork.Interfaces;
 using WebovaAplikace.UnitsOfWork.Implementations;
-using Infrastructure;
 using WebovaAplikace.Repositories.Interfaces;
 using WebovaAplikace.Repositories.Implementations;
+using WebovaAplikace.Common.DataFirst;
+using System.Web.Http;
+using Unity.Mvc5;
 
 namespace WebovaAplikace
 {
@@ -14,13 +15,13 @@ namespace WebovaAplikace
     {
         public static void RegisterComponents()
         {
-			var container = new UnityContainer();
+			var container = new UnityContainer();         
             container.RegisterType<ICustomerRepository, CustomerRepository>();
-            container.RegisterType<EshopDataEntities, EshopDataEntities>();            
+            container.RegisterType<DatabazeWebContext, DatabazeWebContext>();            
             container.RegisterType<IUnitOfWork, UnitOfWork>();
 
-
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
+            GlobalConfiguration.Configuration.DependencyResolver = new Unity.WebApi.UnityDependencyResolver(container);
         }
     }
 }
