@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WebovaAplikace.Common.DbContextDataFirst.Interfaces;
 using WebovaAplikace.Models;
 
 //1)vatvořit takovouto třídu které dědí ze třídy DbContext
@@ -13,9 +14,9 @@ using WebovaAplikace.Models;
 //5)----------------------       BEZ NÁSLEDUJÍCÍHO DPŘÍKAZU DO KONZOLE SE NIC DO DATABÁZE NEZAPÍŠE        -------------------
 //update-database -ConfigurationTypeName "WebovaAplikace.Migrations.Configuration" -ProjectName "WebovaAplikace" -ConnectionString "Data Source=DESKTOP-ECHHB9J\RADOVANSQL;Initial Catalog=EshopData; Integrated Security = True" -ConnectionProviderName "System.Data.SqlClient"
 //switch mezi migracema "update-database -TargetMigration: 0"
-namespace WebovaAplikace.Common.DataFirst
+namespace WebovaAplikace.Common.DbContextDataFirst.Implementations
 {
-    public class DatabazeWebContext : DbContext
+    public class DatabazeWebContext : DbContext , IDbContext
     {
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Product> Products { get; set; }
@@ -26,5 +27,6 @@ namespace WebovaAplikace.Common.DataFirst
         public DbSet<ProductCategory> ProductCategories { get; set; }
 
     }
+
 }
 

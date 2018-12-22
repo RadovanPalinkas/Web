@@ -5,17 +5,20 @@ using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Web;
-using WebovaAplikace.Common.DataFirst;
+using WebovaAplikace.Common.DbContextDataFirst;
+using WebovaAplikace.Common.DbContextDataFirst.Interfaces;
+using WebovaAplikace.Common.Filters;
 using WebovaAplikace.Repositories.Interfaces;
 
 
 namespace WebovaAplikace.Repositories.Implementations
 {
+    
     public class Repository<T> : IRepository<T> where T : class
     {
-        protected readonly DatabazeWebContext Context;
+        protected readonly IDbContext Context;
 
-        public Repository(DatabazeWebContext context)
+        public Repository(IDbContext context)
         {
             Context = context;
         }
@@ -34,10 +37,10 @@ namespace WebovaAplikace.Repositories.Implementations
         {
             return Context.Set<T>().Where(predicate);
         }
-
+        
         public T Get(int id)
-        {
-            return Context.Set<T>().Find(id);
+        {           
+                return Context.Set<T>().Find(id);      
         }
 
         public IEnumerable<T> GetAll()

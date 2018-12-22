@@ -4,15 +4,19 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
-using WebovaAplikace.Common.DataFirst;
+using WebovaAplikace.Common.DbContextDataFirst;
+using WebovaAplikace.Common.DbContextDataFirst.Interfaces;
+using WebovaAplikace.Common.Filters;
 using WebovaAplikace.Models;
 using WebovaAplikace.Repositories.Interfaces;
 
+
 namespace WebovaAplikace.Repositories.Implementations
 {
+    
     public class CustomerRepository : Repository<Customer>, ICustomerRepository
     {      
-        public CustomerRepository(DatabazeWebContext context) : base(context)
+        public CustomerRepository(IDbContext context) : base(context)
         {
         }
 

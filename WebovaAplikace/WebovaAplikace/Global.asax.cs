@@ -7,7 +7,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using WebovaAplikace.Common.DataFirst;
+using WebovaAplikace.Common.DbContextDataFirst.Implementations;
 
 namespace WebovaAplikace
 {
