@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using WebovaAplikace.Common.DataFirst;
 using WebovaAplikace.Models;
 using WebovaAplikace.UnitsOfWork.Interfaces;
 
@@ -76,6 +77,9 @@ namespace WebovaAplikace.Controllers
         // DELETE api/values/5
         public void Delete(int id)
         {
+            Customer cust = iUnitOfWork.Customers.Get(id);
+            iUnitOfWork.Customers.Remove(cust);
+            iUnitOfWork.Complete();
         }
     }
 }

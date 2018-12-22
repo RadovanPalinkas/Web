@@ -15,8 +15,7 @@ namespace WebovaAplikace
     {
         public static void RegisterComponents()
         {
-			var container = new UnityContainer();         
-            container.RegisterType<ICustomerRepository, CustomerRepository>();
+			var container = new UnityContainer();              
             container.RegisterType<DatabazeWebContext, DatabazeWebContext>();            
             container.RegisterType<IUnitOfWork, UnitOfWork>();
 
