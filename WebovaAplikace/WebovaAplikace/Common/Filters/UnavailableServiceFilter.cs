@@ -20,6 +20,10 @@ namespace WebovaAplikace.Common.Filters
             {
                 actionExecutedContext.Response = actionExecutedContext.Request.CreateResponse(HttpStatusCode.ServiceUnavailable, "Nepodařilo se připojit k databázi");
             }
+            if (actionExecutedContext.Exception is ArgumentNullException)
+            {
+                actionExecutedContext.Response = actionExecutedContext.Request.CreateResponse(HttpStatusCode.BadRequest, "Neplatný požadavek");
+            }
         }
     }
 }

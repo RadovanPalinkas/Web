@@ -2,12 +2,14 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Core;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Web;
-using WebovaAplikace.Common.DbContextDataFirst;
 using WebovaAplikace.Common.DbContextDataFirst.Interfaces;
-using WebovaAplikace.Common.Filters;
+
 using WebovaAplikace.Repositories.Interfaces;
 
 
@@ -25,7 +27,11 @@ namespace WebovaAplikace.Repositories.Implementations
 
         public void Add(T entity)
         {
+            if (!Context.ObjectContext.DatabaseExists())            
+                throw new EntityException();
+                      
             Context.Set<T>().Add(entity);
+            
         }
 
         public void AddRange(IEnumerable<T> entities)
@@ -42,10 +48,13 @@ namespace WebovaAplikace.Repositories.Implementations
         {           
                 return Context.Set<T>().Find(id);      
         }
-
         public IEnumerable<T> GetAll()
         {
-            return Context.Set<T>().ToList();
+            return  Context.Set<T>().ToList();
+        }
+        public async Task<IEnumerable<T>> GetAllAsync()
+        {
+            return await Context.Set<T>().ToListAsync();
         }
 
         public void Remove(T entity)

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 using System.Web;
 
 namespace WebovaAplikace.Repositories.Interfaces
@@ -9,7 +10,8 @@ namespace WebovaAplikace.Repositories.Interfaces
     public interface IRepository <T> where T :class
     {
         T Get(int id);
-        IEnumerable<T> GetAll();
+        IEnumerable<T> GetAll();        
+        Task<IEnumerable<T>> GetAllAsync();        
         IEnumerable<T> Find(Expression<Func<T, bool>> predicate);
 
         void Add(T entity);

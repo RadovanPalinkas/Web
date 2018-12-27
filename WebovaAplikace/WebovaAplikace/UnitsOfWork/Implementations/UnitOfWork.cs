@@ -4,7 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
-
+using WebovaAplikace.Common.DbContextDataFirst.Implementations;
 using WebovaAplikace.Common.DbContextDataFirst.Interfaces;
 using WebovaAplikace.Repositories.Implementations;
 using WebovaAplikace.Repositories.Interfaces;
@@ -19,6 +19,7 @@ namespace WebovaAplikace.UnitsOfWork.Implementations
 
         public UnitOfWork(IDbContext context)
         {
+             
             Context = context;
             Customers = new CustomerRepository(Context);
         }        

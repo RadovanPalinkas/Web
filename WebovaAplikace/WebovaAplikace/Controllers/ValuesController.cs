@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Filters;
 using WebovaAplikace.Common.Filters;
@@ -26,21 +28,16 @@ namespace WebovaAplikace.Controllers
 
         // GET api/values  
         [HttpGet]
-        public IEnumerable<Customer> Get()
+        public async Task<IEnumerable<Customer>> Get()
         {
-
-            IEnumerable<Customer> getAll = iUnitOfWork.Customers.GetAll();
-            iUnitOfWork.Dispose();
-            return getAll;
-
-        }
-
-
+            return await iUnitOfWork.Customers.GetAllAsync(); 
+        }  
+        
         // GET api/values/5
         [HttpGet]
         public HttpResponseMessage Get(int id)
         {
-            var entity = iUnitOfWork.Customers.Get(id);            
+            var entity = iUnitOfWork.Customers.Get(id);
             if (entity != null)
             {
                 return Request.CreateResponse(HttpStatusCode.OK, entity);
@@ -57,7 +54,7 @@ namespace WebovaAplikace.Controllers
         {
             iUnitOfWork.Customers.Add(customer);
             iUnitOfWork.Complete();
-            
+
             var message = Request.CreateResponse(HttpStatusCode.Created, customer);
             message.Headers.Location = new System.Uri(Request.RequestUri + customer.CustomerId.ToString());
             return message;
