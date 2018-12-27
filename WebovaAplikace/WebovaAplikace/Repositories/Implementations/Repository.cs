@@ -30,7 +30,7 @@ namespace WebovaAplikace.Repositories.Implementations
             if (!Context.ObjectContext.DatabaseExists())            
                 throw new EntityException();
                       
-            Context.Set<T>().Add(entity);
+            Context.Set<T>().Add(entity);            
             
         }
 
@@ -48,6 +48,10 @@ namespace WebovaAplikace.Repositories.Implementations
         {           
                 return Context.Set<T>().Find(id);      
         }
+        public async Task<T> GetAsync(int id)
+        {           
+                return await Context.Set<T>().FindAsync(id);      
+        }
         public IEnumerable<T> GetAll()
         {
             return  Context.Set<T>().ToList();
@@ -59,7 +63,7 @@ namespace WebovaAplikace.Repositories.Implementations
 
         public void Remove(T entity)
         {
-            Context.Set<T>().Remove(entity);
+            Context.Set<T>().Remove(entity);            
         }
 
         public void RemoveRenge(IEnumerable<T> entities)

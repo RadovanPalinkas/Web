@@ -24,7 +24,7 @@ namespace WebovaAplikace.UnitsOfWork.Implementations
             Customers = new CustomerRepository(Context);
         }        
 
-        public async Task<int> Complete()
+        public async Task<int> CompleteAsync()
         {
             return await Context.SaveChangesAsync();
         }

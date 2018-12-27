@@ -26,18 +26,18 @@ namespace WebovaAplikace.Controllers
             this.iUnitOfWork = iUnitOfWork;
         }
 
-        // GET api/values  
+        //All Customers 
         [HttpGet]
         public async Task<IEnumerable<Customer>> Get()
         {
             return await iUnitOfWork.Customers.GetAllAsync(); 
         }  
         
-        // GET api/values/5
+        //Customer by ID 
         [HttpGet]
-        public HttpResponseMessage Get(int id)
+        public async Task<HttpResponseMessage> Get(int id)
         {
-            var entity = iUnitOfWork.Customers.Get(id);
+            var entity = await iUnitOfWork.Customers.GetAsync(id);
             if (entity != null)
             {
                 return Request.CreateResponse(HttpStatusCode.OK, entity);
@@ -48,15 +48,15 @@ namespace WebovaAplikace.Controllers
             }
         }
 
-        // POST api/values
+        // Add Customer
         [HttpPost]
-        public HttpResponseMessage Post([FromBody]Customer customer)
+        public async Task<HttpResponseMessage> Post([FromBody]Customer customer)
         {
             iUnitOfWork.Customers.Add(customer);
-            iUnitOfWork.Complete();
+            await iUnitOfWork.CompleteAsync();
 
             var message = Request.CreateResponse(HttpStatusCode.Created, customer);
-            message.Headers.Location = new System.Uri(Request.RequestUri + customer.CustomerId.ToString());
+            message.Headers.Location = new System.Uri(Request.RequestUri + customer.CustomerId.ToString());    
             return message;
         }
 
@@ -67,12 +67,11 @@ namespace WebovaAplikace.Controllers
 
         }
 
-        // DELETE api/values/5
-
+        // DELETE Customer
         [HttpDelete]
-        public HttpResponseMessage Delete(int id)
+        public async Task<HttpResponseMessage> Delete(int id)
         {
-            Customer cust = iUnitOfWork.Customers.Get(id);
+            Customer cust = await iUnitOfWork.Customers.GetAsync(id);
             if (cust == null)
             {
                 return Request.CreateErrorResponse(HttpStatusCode.NotFound, $"Customer with {id} neexistuje");
@@ -80,7 +79,7 @@ namespace WebovaAplikace.Controllers
             else
             {
                 iUnitOfWork.Customers.Remove(cust);
-                iUnitOfWork.Complete();
+                await iUnitOfWork.CompleteAsync();
                 return Request.CreateResponse(HttpStatusCode.OK, $"Customer s {id} byl vymazán");
             }
         }

@@ -10,6 +10,6 @@ namespace WebovaAplikace.UnitsOfWork.Interfaces
     public interface IUnitOfWork : IDisposable
     {
         ICustomerRepository Customers { get; }
-        Task<int> Complete();
+        Task<int> CompleteAsync();
     }
 }
