@@ -44,7 +44,7 @@ namespace WebovaAplikace.Repositories.Implementations
         }
 
         public IEnumerable<T> Find(Expression<Func<T, bool>> predicate)
-        {
+        {            
             return Context.Set<T>().Where(predicate);
         }
 

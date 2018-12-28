@@ -28,38 +28,46 @@ namespace WebovaAplikace.Controllers
 
         //All Customers 
         [HttpGet]
-        public async Task<IEnumerable<Customer>> Get()
+        public async Task<IEnumerable<Customer>> GetAllCustomers()
         {
             return await iUnitOfWork.Customers.GetAllAsync();
         }
 
         //get Customer by ID 
         [HttpGet]
-        public async Task<HttpResponseMessage> Get(int id)
+        public async Task<HttpResponseMessage> GetCustomerById([FromUri]int id)
         {
-            Customer customer = await iUnitOfWork.Customers.GetAsync(id);
-            if (customer == null)
+            Customer entity = await iUnitOfWork.Customers.GetAsync(id);
+            if (entity == null)
             {
                 return Request.CreateErrorResponse(HttpStatusCode.NotFound, $"zaměstnanec s tímto Id: {id} neexistuje");
             }
-            return Request.CreateResponse(HttpStatusCode.OK);
+
+            return Request.CreateResponse(HttpStatusCode.OK, entity);
         }
+
+        [HttpGet]
+        public HttpResponseMessage GetCustomerByCity([FromUri]string city)
+        {
+            IEnumerable<Customer> entity = iUnitOfWork.Customers.Find(a => a.City == city);
+            return Request.CreateResponse(HttpStatusCode.OK, entity);                        
+        }      
 
         //Add Customer
         [HttpPost]
-        public async Task<HttpResponseMessage> Post([FromBody]Customer customer)
+        public async Task<HttpResponseMessage> AddCustomer([FromBody]Customer customer)
         {
             await iUnitOfWork.Customers.AddAsync(customer);
             await iUnitOfWork.CompleteAsync();
 
             var message = Request.CreateResponse(HttpStatusCode.Created, customer);
-            message.Headers.Location = new System.Uri(Request.RequestUri + customer.CustomerId.ToString());
+            message.Headers.Location = new Uri(Request.RequestUri + customer.CustomerId.ToString()); //přesměrování
             return message;
         }
 
         //PUT api/values/5
         [HttpPut]
-        public async Task<HttpResponseMessage> Put(int id, [FromBody]Customer customer)
+        public async Task<HttpResponseMessage> UpdateCustomer([FromUri]int id, [FromBody]Customer customer)
         {
             Customer entity = await iUnitOfWork.Customers.GetAsync(id);
             if (entity == null)
@@ -71,15 +79,17 @@ namespace WebovaAplikace.Controllers
             entity.City = customer.City;
             entity.Street = customer.Street;
             entity.Number = customer.Number;
-            entity.ZipCode = customer.ZipCode;           
+            entity.ZipCode = customer.ZipCode;
 
             await iUnitOfWork.CompleteAsync();
-            return Request.CreateResponse(HttpStatusCode.OK);
+            return Request.CreateResponse(HttpStatusCode.OK, entity);
         }
+
+
 
         //DELETE Customer
         [HttpDelete]
-        public async Task<HttpResponseMessage> Delete(int id)
+        public async Task<HttpResponseMessage> DeleteCustomer([FromUri]int id)
         {
             Customer entity = await iUnitOfWork.Customers.GetAsync(id);
             if (entity == null)
@@ -89,7 +99,7 @@ namespace WebovaAplikace.Controllers
 
             iUnitOfWork.Customers.Remove(entity);
             await iUnitOfWork.CompleteAsync();
-            return Request.CreateResponse(HttpStatusCode.OK);
+            return Request.CreateResponse(HttpStatusCode.OK, entity);
         }
     }
 }
