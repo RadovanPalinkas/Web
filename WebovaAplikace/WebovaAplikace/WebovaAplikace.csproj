@@ -374,6 +374,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Common\Authentication\" />
+    <Folder Include="Common\CustomResponses\" />
     <Folder Include="Common\Enum\" />
     <Folder Include="Content\Images\" />
     <Folder Include="Content\PDF\" />

@@ -9,13 +9,13 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using WebovaAplikace.Common.DbContextDataFirst.Interfaces;
-
+using WebovaAplikace.Models;
 using WebovaAplikace.Repositories.Interfaces;
 
 
 namespace WebovaAplikace.Repositories.Implementations
 {
-    
+
     public class Repository<T> : IRepository<T> where T : class
     {
         protected readonly IDbContext Context;
@@ -27,11 +27,15 @@ namespace WebovaAplikace.Repositories.Implementations
 
         public void Add(T entity)
         {
-            if (!Context.ObjectContext.DatabaseExists())            
+            if (!Context.ObjectContext.DatabaseExists())
                 throw new EntityException();
-                      
-            Context.Set<T>().Add(entity);            
-            
+            Context.Set<T>().Add(entity);
+        }
+        public async Task AddAsync(T entity)
+        {
+            if (!Context.ObjectContext.DatabaseExists())
+                throw new EntityException();
+            await Task.Run(() => Context.Set<T>().Add(entity));
         }
 
         public void AddRange(IEnumerable<T> entities)
@@ -43,18 +47,18 @@ namespace WebovaAplikace.Repositories.Implementations
         {
             return Context.Set<T>().Where(predicate);
         }
-        
+
         public T Get(int id)
-        {           
-                return Context.Set<T>().Find(id);      
+        {
+            return Context.Set<T>().Find(id);
         }
         public async Task<T> GetAsync(int id)
-        {           
-                return await Context.Set<T>().FindAsync(id);      
+        {
+            return await Context.Set<T>().FindAsync(id);
         }
         public IEnumerable<T> GetAll()
         {
-            return  Context.Set<T>().ToList();
+            return Context.Set<T>().ToList();
         }
         public async Task<IEnumerable<T>> GetAllAsync()
         {
@@ -63,7 +67,7 @@ namespace WebovaAplikace.Repositories.Implementations
 
         public void Remove(T entity)
         {
-            Context.Set<T>().Remove(entity);            
+            Context.Set<T>().Remove(entity);
         }
 
         public void RemoveRenge(IEnumerable<T> entities)
