@@ -43,9 +43,13 @@ namespace WebovaAplikace.Repositories.Implementations
             Context.Set<T>().AddRange(entities);
         }
 
-        public IEnumerable<T> Find(Expression<Func<T, bool>> predicate)
-        {            
+        public IEnumerable<T> Find(Func<T, bool> predicate)
+        {
             return Context.Set<T>().Where(predicate);
+        }
+        public async Task<IEnumerable<T>> FindAsync(Func<T, bool> predicate)
+        {
+            return await Task.Run(()=>Context.Set<T>().Where(predicate));
         }
 
         public T Get(int id)

@@ -7,7 +7,6 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http;
-using System.Web.Http.Filters;
 using WebovaAplikace.Common.Filters;
 using WebovaAplikace.Models;
 using WebovaAplikace.UnitsOfWork.Interfaces;
@@ -47,11 +46,11 @@ namespace WebovaAplikace.Controllers
         }
 
         [HttpGet]
-        public HttpResponseMessage GetCustomerByCity([FromUri]string city)
+        public async Task< HttpResponseMessage> GetCustomerByFirstNameAndLastName([FromUri]string firstName, [FromUri]string lastName)
         {
-            IEnumerable<Customer> entity = iUnitOfWork.Customers.Find(a => a.City == city);
+            IEnumerable<Customer> entity = await iUnitOfWork.Customers.FindAsync(a => a.FirstName == firstName && a.LastName==lastName);
             return Request.CreateResponse(HttpStatusCode.OK, entity);                        
-        }      
+        }
 
         //Add Customer
         [HttpPost]
@@ -84,9 +83,7 @@ namespace WebovaAplikace.Controllers
             await iUnitOfWork.CompleteAsync();
             return Request.CreateResponse(HttpStatusCode.OK, entity);
         }
-
-
-
+        
         //DELETE Customer
         [HttpDelete]
         public async Task<HttpResponseMessage> DeleteCustomer([FromUri]int id)

@@ -13,7 +13,8 @@ namespace WebovaAplikace.Repositories.Interfaces
         Task<T> GetAsync(int id);
         IEnumerable<T> GetAll();        
         Task<IEnumerable<T>> GetAllAsync();        
-        IEnumerable<T> Find(Expression<Func<T, bool>> predicate);
+        IEnumerable<T> Find(Func<T, bool> predicate);
+        Task<IEnumerable<T>> FindAsync(Func<T, bool> predicate);
 
         void Add(T entity);        
         Task AddAsync(T entity);        
