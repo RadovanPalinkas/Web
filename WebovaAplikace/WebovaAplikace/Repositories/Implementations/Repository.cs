@@ -9,6 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using WebovaAplikace.Common.DbContextDataFirst.Interfaces;
+using WebovaAplikace.Common.Filters;
 using WebovaAplikace.Models;
 using WebovaAplikace.Repositories.Interfaces;
 
@@ -30,7 +31,7 @@ namespace WebovaAplikace.Repositories.Implementations
             if (!Context.ObjectContext.DatabaseExists())
                 throw new EntityException();
             Context.Set<T>().Add(entity);
-        }
+        }    
         public async Task AddAsync(T entity)
         {
             if (!Context.ObjectContext.DatabaseExists())

@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using WebovaAplikace.Common.Filters;
 using WebovaAplikace.Models;
 using WebovaAplikace.UnitsOfWork.Interfaces;
@@ -14,7 +14,7 @@ using WebovaAplikace.UnitsOfWork.Interfaces;
 namespace WebovaAplikace.Controllers
 {
     //[Authorize]
-
+    [EnableCors("*", "*", "*")]
     [UnavailableServiceFilter]
     public class ValuesController : ApiController
     {
@@ -86,6 +86,7 @@ namespace WebovaAplikace.Controllers
         
         //DELETE Customer
         [HttpDelete]
+        [DisableCors]
         public async Task<HttpResponseMessage> DeleteCustomer([FromUri]int id)
         {
             Customer entity = await iUnitOfWork.Customers.GetAsync(id);

@@ -9,7 +9,7 @@ using System.Web.Http;
 using Unity.Mvc5;
 using WebovaAplikace.Common.DbContextDataFirst.Interfaces;
 using WebovaAplikace.Common.DbContextDataFirst.Implementations;
-
+//1) Nastavení container aby injektoval i v Api Controlerech
 namespace WebovaAplikace
 {
     public static class UnityConfig
@@ -19,7 +19,8 @@ namespace WebovaAplikace
 			var container = new UnityContainer();              
             container.RegisterType<IDbContext, DatabazeWebContext>();            
             container.RegisterType<IUnitOfWork, UnitOfWork>();
-
+           
+            //**1**
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
             GlobalConfiguration.Configuration.DependencyResolver = new Unity.WebApi.UnityDependencyResolver(container);
 
