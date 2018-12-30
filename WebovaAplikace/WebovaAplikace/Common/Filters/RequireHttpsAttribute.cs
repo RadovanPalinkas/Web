@@ -22,14 +22,14 @@ namespace WebovaAplikace.Common.Filters
                 actionContext.Response.Content = new StringContent("<p>Use Https insted Http</p>", Encoding.UTF8, "text/html");
 
                 string[] segmentUri = actionContext.Request.RequestUri.Segments;
-                string uriString = null;
+                StringBuilder stringBuilder = new StringBuilder();
                 for (int i = 0; i < 3 ; i++)
                 {
-                    uriString += segmentUri[i];
+                    stringBuilder.Append( segmentUri[i]);
                 }
 
                 UriBuilder uriBuilder = new UriBuilder(actionContext.Request.RequestUri);
-                uriBuilder.Path = uriString;
+                uriBuilder.Path = stringBuilder.ToString();
                 uriBuilder.Scheme = Uri.UriSchemeHttps;
                 uriBuilder.Port = 44357;
                 actionContext.Response.Headers.Location = uriBuilder.Uri;

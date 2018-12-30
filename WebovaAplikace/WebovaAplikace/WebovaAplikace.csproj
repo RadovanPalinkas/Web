@@ -258,6 +258,10 @@
     <Compile Include="Migrations\201812301922242_fixEmployee.Designer.cs">
       <DependentUpon>201812301922242_fixEmployee.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812302121516_fixEmployee2.cs" />
+    <Compile Include="Migrations\201812302121516_fixEmployee2.Designer.cs">
+      <DependentUpon>201812302121516_fixEmployee2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -266,7 +270,9 @@
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductCategory.cs" />
+    <Compile Include="Repositories\Implementations\EmployeeRepository.cs" />
     <Compile Include="Repositories\Interfaces\ICustomerRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IEmployeeRepository.cs" />
     <Compile Include="Repositories\Interfaces\IRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Implementations\CustomerRepository.cs" />
@@ -436,6 +442,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812301922242_fixEmployee.resx">
       <DependentUpon>201812301922242_fixEmployee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812302121516_fixEmployee2.resx">
+      <DependentUpon>201812302121516_fixEmployee2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

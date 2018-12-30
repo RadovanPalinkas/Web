@@ -14,11 +14,16 @@ namespace WebovaAplikace.UnitsOfWork.Implementations
     {
         private readonly IDbContext Context;
         public ICustomerRepository Customers { get; private set; }
+        public IEmployeeRepository Employees { get; private set; }
 
-        public UnitOfWork(IDbContext context)
+        public UnitOfWork(IDbContext context, ICustomerRepository customer,IEmployeeRepository employee)
         {             
             Context = context;
-            Customers = new CustomerRepository(Context);
+            Customers = customer;
+            Employees = employee;
+
+            Customers.SetDbContext(context);
+            Employees.SetDbContext(context);
         }        
 
         public async Task<int> CompleteAsync()

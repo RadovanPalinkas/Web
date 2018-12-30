@@ -28,7 +28,7 @@ namespace WebovaAplikace.Models
         [Required]
         public int ZipCode { get; set; }
         [Required]
-        public int Competency { get; set; }
+        public int Authorization { get; set; }
         [Required]
         public int Salary { get; set; }
         [Required]
