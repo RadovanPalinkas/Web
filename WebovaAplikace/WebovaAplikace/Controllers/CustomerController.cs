@@ -15,12 +15,11 @@ namespace WebovaAplikace.Controllers
 {
     //[Authorize]
     [EnableCors("*", "*", "*")]
-    [UnavailableServiceFilter]
-    public class ValuesController : ApiController
+    public class CustomerController : ApiController
     {
         private readonly IUnitOfWork iUnitOfWork;
 
-        public ValuesController(IUnitOfWork iUnitOfWork)
+        public CustomerController(IUnitOfWork iUnitOfWork)
         {
             this.iUnitOfWork = iUnitOfWork;
         }

@@ -11,10 +11,27 @@ namespace WebovaAplikace.Models
     {
         
         public int EmployeeId { get; set; }
+        [Required]
         public string  FirstName { get; set; }
+        [Required]
         public string LastName { get; set; }
+        [Required]
+        public string Email { get; set; }
+        [Required]
         public string Gender { get; set; }
+        [Required]
+        public string City { get; set; }
+        [Required]
+        public string Street { get; set; }
+        [Required]
+        public int Number { get; set; }
+        [Required]
+        public int ZipCode { get; set; }
+        [Required]
+        public int Competency { get; set; }
+        [Required]
         public int Salary { get; set; }
+        [Required]
         public int DepartmentId { get; set; }
         [ForeignKey("DepartmentId")]
         public Department Department { get; set; }

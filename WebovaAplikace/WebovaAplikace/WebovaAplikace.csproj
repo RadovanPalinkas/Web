@@ -232,8 +232,9 @@
     <Compile Include="Common\DbContextDataFirst\Interfaces\IDbContext.cs" />
     <Compile Include="Common\Filters\UnavailableServiceFilter.cs" />
     <Compile Include="Common\Filters\RequireHttpsAttribute.cs" />
+    <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\MainController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -252,6 +253,10 @@
     <Compile Include="Migrations\201812291418370_fixCustomer2.cs" />
     <Compile Include="Migrations\201812291418370_fixCustomer2.Designer.cs">
       <DependentUpon>201812291418370_fixCustomer2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812301922242_fixEmployee.cs" />
+    <Compile Include="Migrations\201812301922242_fixEmployee.Designer.cs">
+      <DependentUpon>201812301922242_fixEmployee.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Category.cs" />
@@ -428,6 +433,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812291418370_fixCustomer2.resx">
       <DependentUpon>201812291418370_fixCustomer2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812301922242_fixEmployee.resx">
+      <DependentUpon>201812301922242_fixEmployee.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
