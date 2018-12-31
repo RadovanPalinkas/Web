@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using WebovaAplikace.Models;
 using WebovaAplikace.UnitsOfWork.Interfaces;
 
 namespace WebovaAplikace.Controllers
 {
+    [EnableCors("*", "*", "*")]
     public class EmployeeController : ApiController
     {
         public IUnitOfWork iUnitOfWork { get; set; }
@@ -18,16 +18,36 @@ namespace WebovaAplikace.Controllers
             this.iUnitOfWork = iUnitOfWork;
         }
         [HttpGet]
-        public async Task<HttpResponseMessage> GetAllEmployee()
+        public HttpResponseMessage Intro()
         {
-            var Employee = await iUnitOfWork.Employees.GetAllAsync();
-            return Request.CreateResponse(HttpStatusCode.OK, Employee);
+            List<string> intro = new List<string>() { "Zadejte dotaz:", "getAll=all", "getById=NUMBER", "getByAuthorization=NUMBER"};
+            return Request.CreateResponse(HttpStatusCode.OK, intro);
+        }
+        [HttpGet]
+        public async Task<HttpResponseMessage> GetAllEmployees([FromUri]string getAll)
+        {
+            if (getAll == "all")
+            {
+                var employee = await iUnitOfWork.Employees.GetAllAsync();
+                return Request.CreateResponse(HttpStatusCode.OK, employee);
+            }
+            else
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, "Zadali jste špatný příkaz");
+            }           
         }
 
         [HttpGet]
-        public async Task<HttpResponseMessage> GetEmployeeBy(int authorization)
+        public async Task<HttpResponseMessage> GetEmployeeById([FromUri]int getById)
         {
-            var Employee = await iUnitOfWork.Employees.GetEmployeeByCompetencyAsync(authorization);
+            var employee = await iUnitOfWork.Employees.GetAsync(getById);
+            return Request.CreateResponse(HttpStatusCode.OK, employee);
+        }
+
+        [HttpGet]
+        public async Task<HttpResponseMessage> GetEmployeeByAuthorization([FromUri]int getByAuthorization)
+        {
+            var Employee = await iUnitOfWork.Employees.GetEmployeeByAuthorizationAsync(getByAuthorization);
 
             return Request.CreateResponse(HttpStatusCode.OK, Employee);
         }

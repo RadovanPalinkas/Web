@@ -53,6 +53,7 @@ namespace WebovaAplikace.Repositories.Implementations
         {
             return await Task.Run(() => Context.Set<T>().Where(predicate));
         }
+        //Get by ID
         public T Get(int id)
         {
             return Context.Set<T>().Find(id);

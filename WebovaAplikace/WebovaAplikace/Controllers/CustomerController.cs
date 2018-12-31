@@ -26,19 +26,33 @@ namespace WebovaAplikace.Controllers
 
         //All Customers 
         [HttpGet]
-        public async Task<IEnumerable<Customer>> GetAllCustomers()
+        public HttpResponseMessage Intro()
         {
-            return await iUnitOfWork.Customers.GetAllAsync();
+            List<string> intro = new List<string>() { "Zadejte dotaz:", "getAll=all", "getById=NUMBER" };
+            return Request.CreateResponse(HttpStatusCode.OK, intro);
         }
 
+        [HttpGet]
+        public async Task<HttpResponseMessage> GetAllCustomers([FromUri]string getAll)
+        {
+            if (getAll == "all")
+            {
+                var customer = await iUnitOfWork.Customers.GetAllAsync();
+                return Request.CreateResponse(HttpStatusCode.OK, customer);
+            }
+            else
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, "Zadali jste špatný příkaz");
+            }
+        }
         //get Customer by ID 
         [HttpGet]
-        public async Task<HttpResponseMessage> GetCustomerById([FromUri]int id)
+        public async Task<HttpResponseMessage> GetCustomerById([FromUri]int getById)
         {
-            Customer entity = await iUnitOfWork.Customers.GetAsync(id);
+            Customer entity = await iUnitOfWork.Customers.GetAsync(getById);
             if (entity == null)
             {
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, $"zaměstnanec s tímto Id: {id} neexistuje");
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, $"zaměstnanec s tímto Id: {getById} neexistuje");
             }
 
             return Request.CreateResponse(HttpStatusCode.OK, entity);

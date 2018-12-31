@@ -9,7 +9,7 @@ namespace WebovaAplikace.Repositories.Interfaces
 {
     public interface IEmployeeRepository: IRepository<Employee>
     {
-        IEnumerable<Employee> GetEmployeeByCompetency(int authorization);
-        Task<IEnumerable<Employee>> GetEmployeeByCompetencyAsync(int authorization);
+        IEnumerable<Employee> GetEmployeeByAuthorization(int authorization);
+        Task<IEnumerable<Employee>> GetEmployeeByAuthorizationAsync(int authorization);
     }
 }
