@@ -227,9 +227,12 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Common\Authentication\Implementations\EmployeeSecurity.cs" />
+    <Compile Include="Common\Authentication\Interfaces\IEmployeeSecurity.cs" />
     <Compile Include="Common\Constants.cs" />
     <Compile Include="Common\DbContextDataFirst\Implementations\DatabazeWebContext.cs" />
     <Compile Include="Common\DbContextDataFirst\Interfaces\IDbContext.cs" />
+    <Compile Include="Common\Filters\AuthenticationAttribute.cs" />
     <Compile Include="Common\Filters\UnavailableServiceFilter.cs" />
     <Compile Include="Common\Filters\RequireHttpsAttribute.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
@@ -262,6 +265,14 @@
     <Compile Include="Migrations\201812302121516_fixEmployee2.Designer.cs">
       <DependentUpon>201812302121516_fixEmployee2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901021157275_addPassEmployee.cs" />
+    <Compile Include="Migrations\201901021157275_addPassEmployee.Designer.cs">
+      <DependentUpon>201901021157275_addPassEmployee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901021200073_fixPassEmployee.cs" />
+    <Compile Include="Migrations\201901021200073_fixPassEmployee.Designer.cs">
+      <DependentUpon>201901021200073_fixPassEmployee.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -287,6 +298,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\fontawesome.css" />
     <Content Include="Customers.html" />
+    <Content Include="Employees.html" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -400,7 +412,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Common\Authentication\" />
     <Folder Include="Common\CustomResponses\" />
     <Folder Include="Common\Enum\" />
     <Folder Include="Content\Images\" />
@@ -445,6 +456,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812302121516_fixEmployee2.resx">
       <DependentUpon>201812302121516_fixEmployee2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901021157275_addPassEmployee.resx">
+      <DependentUpon>201901021157275_addPassEmployee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901021200073_fixPassEmployee.resx">
+      <DependentUpon>201901021200073_fixPassEmployee.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

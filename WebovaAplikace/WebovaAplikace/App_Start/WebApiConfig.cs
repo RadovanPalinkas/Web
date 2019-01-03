@@ -43,8 +43,10 @@ namespace WebovaAplikace
             //**5**
             config.EnableCors();
             //**6**
-            config.Filters.Add(new RequireHttpsAttribute());
+            config.Filters.Add(new RequireHttpsFilterAttribute());
             config.Filters.Add(new UnavailableServiceFilterAttribute());
+           
+          
         }
     }
     //**4**

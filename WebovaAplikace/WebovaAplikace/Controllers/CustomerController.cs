@@ -7,7 +7,6 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Cors;
-using WebovaAplikace.Common.Filters;
 using WebovaAplikace.Models;
 using WebovaAplikace.UnitsOfWork.Interfaces;
 
@@ -18,9 +17,10 @@ namespace WebovaAplikace.Controllers
     public class CustomerController : ApiController
     {
         private readonly IUnitOfWork iUnitOfWork;
+       
 
         public CustomerController(IUnitOfWork iUnitOfWork)
-        {
+        {           
             this.iUnitOfWork = iUnitOfWork;
         }
 

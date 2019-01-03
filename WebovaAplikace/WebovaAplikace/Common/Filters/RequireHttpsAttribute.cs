@@ -11,7 +11,7 @@ using System.Web.Http.Filters;
 //1)Do těla meziodpovědi vloží takq a v hlavičce změní MediaType
 namespace WebovaAplikace.Common.Filters
 {
-    public class RequireHttpsAttribute : AuthorizationFilterAttribute
+    public class RequireHttpsFilterAttribute : AuthorizationFilterAttribute
     {
         public override void OnAuthorization(HttpActionContext actionContext)
         {
@@ -32,7 +32,9 @@ namespace WebovaAplikace.Common.Filters
                 uriBuilder.Path = stringBuilder.ToString();
                 uriBuilder.Scheme = Uri.UriSchemeHttps;
                 uriBuilder.Port = 44357;
+                uriBuilder.Query = null;
                 actionContext.Response.Headers.Location = uriBuilder.Uri;
+             
             }
             else
             {

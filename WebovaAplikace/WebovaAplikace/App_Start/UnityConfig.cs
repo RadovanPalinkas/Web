@@ -9,6 +9,8 @@ using System.Web.Http;
 using Unity.Mvc5;
 using WebovaAplikace.Common.DbContextDataFirst.Interfaces;
 using WebovaAplikace.Common.DbContextDataFirst.Implementations;
+using WebovaAplikace.Common.Authentication.Implementations;
+using WebovaAplikace.Common.Authentication.Interfaces;
 //1) Nastavení container aby injektoval i v Api Controlerech
 namespace WebovaAplikace
 {
@@ -16,16 +18,20 @@ namespace WebovaAplikace
     {
         public static void RegisterComponents()
         {
-			var container = new UnityContainer();              
-            container.RegisterType<IDbContext, DatabazeWebContext>();            
+            var container = new UnityContainer();
+            container.RegisterType<IDbContext, DatabazeWebContext>();
             container.RegisterType<IUnitOfWork, UnitOfWork>();
             container.RegisterType<ICustomerRepository, CustomerRepository>();
             container.RegisterType<IEmployeeRepository, EmployeeRepository>();
+         
+            
+            
            
             //**1**
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
             GlobalConfiguration.Configuration.DependencyResolver = new Unity.WebApi.UnityDependencyResolver(container);
             
         }
+      
     }
 }

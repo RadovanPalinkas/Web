@@ -10,7 +10,7 @@ namespace WebovaAplikace.Models
     public class Employee
     {
         
-        public int EmployeeId { get; set; }
+        public int EmployeeId { get; set; }       
         [Required]
         public string  FirstName { get; set; }
         [Required]
@@ -27,6 +27,8 @@ namespace WebovaAplikace.Models
         public int Number { get; set; }
         [Required]
         public int ZipCode { get; set; }
+        [Required]
+        public string Password { get; set; }
         [Required]
         public int Authorization { get; set; }
         [Required]

@@ -7,15 +7,17 @@ using WebovaAplikace.Models;
 using Newtonsoft.Json;
 using WebovaAplikace.UnitsOfWork.Interfaces;
 
+
 namespace WebovaAplikace.Controllers
 {
     public class MainController : Controller
     {
+    
         public IUnitOfWork iUnitOfWork ;
         //konstruktor se zavolá pro získábí dat pomocí dependency injection
 
         public MainController(IUnitOfWork iUmitOfWork)
-        {
+        {            
             this.iUnitOfWork = iUmitOfWork;
         }
 

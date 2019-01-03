@@ -17,7 +17,7 @@ using WebovaAplikace.Models;
 //switch mezi migracema "update-database -TargetMigration: 0"
 namespace WebovaAplikace.Common.DbContextDataFirst.Implementations
 {
-    public class DatabazeWebContext : DbContext , IDbContext
+    public class DatabazeWebContext : DbContext, IDbContext
     {
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Product> Products { get; set; }
@@ -26,7 +26,7 @@ namespace WebovaAplikace.Common.DbContextDataFirst.Implementations
         public DbSet<Order> Orders { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<ProductCategory> ProductCategories { get; set; }
-
+        
     }
 
 }

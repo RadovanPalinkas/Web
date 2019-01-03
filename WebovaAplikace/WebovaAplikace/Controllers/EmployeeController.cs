@@ -1,9 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using WebovaAplikace.Common.Authentication.Implementations;
+using WebovaAplikace.Common.Filters;
 using WebovaAplikace.Models;
 using WebovaAplikace.UnitsOfWork.Interfaces;
 
@@ -12,6 +15,7 @@ namespace WebovaAplikace.Controllers
     [EnableCors("*", "*", "*")]
     public class EmployeeController : ApiController
     {
+
         public IUnitOfWork iUnitOfWork { get; set; }
         public EmployeeController(IUnitOfWork iUnitOfWork)
         {
@@ -20,12 +24,16 @@ namespace WebovaAplikace.Controllers
         [HttpGet]
         public HttpResponseMessage Intro()
         {
-            List<string> intro = new List<string>() { "Zadejte dotaz:", "getAll=all", "getById=NUMBER", "getByAuthorization=NUMBER"};
+            List<string> intro = new List<string>() { "Zadejte dotaz:", "getAll=all", "getById=NUMBER", "getByAuthorization=NUMBER" };
             return Request.CreateResponse(HttpStatusCode.OK, intro);
+
         }
         [HttpGet]
+        [BasicAuthentication]
         public async Task<HttpResponseMessage> GetAllEmployees([FromUri]string getAll)
         {
+            string email = Thread.CurrentPrincipal.Identity.Name;
+
             if (getAll == "all")
             {
                 var employee = await iUnitOfWork.Employees.GetAllAsync();
@@ -34,7 +42,7 @@ namespace WebovaAplikace.Controllers
             else
             {
                 return Request.CreateResponse(HttpStatusCode.BadRequest, "Zadali jste špatný příkaz");
-            }           
+            }
         }
 
         [HttpGet]
