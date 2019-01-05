@@ -16,7 +16,7 @@ namespace WebovaAplikace.Controllers
     public class EmployeeController : ApiController
     {
 
-        public IUnitOfWork iUnitOfWork { get; set; }
+        private IUnitOfWork iUnitOfWork { get; set; }
         public EmployeeController(IUnitOfWork iUnitOfWork)
         {
             this.iUnitOfWork = iUnitOfWork;

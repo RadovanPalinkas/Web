@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
 //filtr který automaticky převede http komunikaci na https komunikaci
-//1)Do těla meziodpovědi vloží takq a v hlavičce změní MediaType
+//1)Do těla meziodpovědi vloží tag a v hlavičce změní MediaType
 namespace WebovaAplikace.Common.Filters
 {
     public class RequireHttpsFilterAttribute : AuthorizationFilterAttribute

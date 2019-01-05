@@ -15,14 +15,11 @@ using WebovaAplikace.Common.Authentication.Implementations;
 namespace WebovaAplikace.Common.Filters
 {
     
+    
     public class BasicAuthenticationAttribute : AuthorizationFilterAttribute
     {       
-
-
         public override void OnAuthorization(HttpActionContext actionContext)
         {
-            
-
             if (actionContext.Request.Headers.Authorization == null)
             {
                 actionContext.Response = actionContext.Request

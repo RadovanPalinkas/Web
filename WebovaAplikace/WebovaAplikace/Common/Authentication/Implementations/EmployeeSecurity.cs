@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using WebovaAplikace.Common.Authentication.Interfaces;
+
 using WebovaAplikace.Common.DbContextDataFirst.Implementations;
 using WebovaAplikace.Common.DbContextDataFirst.Interfaces;
 using WebovaAplikace.Models;

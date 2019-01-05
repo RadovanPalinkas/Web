@@ -228,7 +228,6 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Common\Authentication\Implementations\EmployeeSecurity.cs" />
-    <Compile Include="Common\Authentication\Interfaces\IEmployeeSecurity.cs" />
     <Compile Include="Common\Constants.cs" />
     <Compile Include="Common\DbContextDataFirst\Implementations\DatabazeWebContext.cs" />
     <Compile Include="Common\DbContextDataFirst\Interfaces\IDbContext.cs" />
