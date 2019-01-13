@@ -19,19 +19,16 @@ namespace WebovaAplikace
         public static void RegisterComponents()
         {
             var container = new UnityContainer();
+
             container.RegisterType<IDbContext, DatabazeWebContext>();
             container.RegisterType<IUnitOfWork, UnitOfWork>();
             container.RegisterType<ICustomerRepository, CustomerRepository>();
             container.RegisterType<IEmployeeRepository, EmployeeRepository>();
-         
-            
-            
-           
-            //**1**
+            ////**1**
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
             GlobalConfiguration.Configuration.DependencyResolver = new Unity.WebApi.UnityDependencyResolver(container);
-            
+
         }
-      
+
     }
 }

@@ -7,12 +7,13 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using WebovaAplikace.Common.Filters;
 using WebovaAplikace.Models;
 using WebovaAplikace.UnitsOfWork.Interfaces;
 
 namespace WebovaAplikace.Controllers
 {
-    //[Authorize]
+    [BasicAuthentication]
     [EnableCors("*", "*", "*")]
     public class CustomerController : ApiController
     {
@@ -24,8 +25,9 @@ namespace WebovaAplikace.Controllers
             this.iUnitOfWork = iUnitOfWork;
         }
 
-        //All Customers 
+        
         [HttpGet]
+        [Route("api/Customer/")]
         public HttpResponseMessage Intro()
         {
             List<string> intro = new List<string>() { "Zadejte dotaz:", "getAll=all", "getById=NUMBER" };
@@ -33,32 +35,29 @@ namespace WebovaAplikace.Controllers
         }
 
         [HttpGet]
-        public async Task<HttpResponseMessage> GetAllCustomers([FromUri]string getAll)
+        [Route("api/Customer/GetAll")]
+        public async Task<HttpResponseMessage> GetAllCustomers()
         {
-            if (getAll == "all")
-            {
+           
                 var customer = await iUnitOfWork.Customers.GetAllAsync();
-                return Request.CreateResponse(HttpStatusCode.OK, customer);
-            }
-            else
-            {
-                return Request.CreateResponse(HttpStatusCode.BadRequest, "Zadali jste špatný příkaz");
-            }
+                return Request.CreateResponse(HttpStatusCode.OK, customer);           
         }
         //get Customer by ID 
         [HttpGet]
-        public async Task<HttpResponseMessage> GetCustomerById([FromUri]int getById)
+        [Route("api/Customer/{Id}")]
+        public async Task<HttpResponseMessage> GetCustomerById([FromUri]int Id)
         {
-            Customer entity = await iUnitOfWork.Customers.GetAsync(getById);
+            Customer entity = await iUnitOfWork.Customers.GetAsync(Id);
             if (entity == null)
             {
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, $"zaměstnanec s tímto Id: {getById} neexistuje");
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, $"zaměstnanec s tímto Id: {Id} neexistuje");
             }
 
             return Request.CreateResponse(HttpStatusCode.OK, entity);
         }
 
         [HttpGet]
+        [Route("api/Customer/FullName/{firstName}_{lastName}")]
         public async Task< HttpResponseMessage> GetCustomerByFirstNameAndLastName([FromUri]string firstName, [FromUri]string lastName)
         {
             IEnumerable<Customer> entity = await iUnitOfWork.Customers.FindAsync(a => a.FirstName == firstName && a.LastName==lastName);
@@ -67,6 +66,7 @@ namespace WebovaAplikace.Controllers
 
         //Add Customer
         [HttpPost]
+        [Route("api/Customer/Add/")]
         public async Task<HttpResponseMessage> AddCustomer([FromBody]Customer customer)
         {
             await iUnitOfWork.Customers.AddAsync(customer);
@@ -79,6 +79,7 @@ namespace WebovaAplikace.Controllers
 
         //PUT api/values/5
         [HttpPut]
+        [Route("api/Customer/Update/{id}")]
         public async Task<HttpResponseMessage> UpdateCustomer([FromUri]int id, [FromBody]Customer customer)
         {
             Customer entity = await iUnitOfWork.Customers.GetAsync(id);
@@ -96,16 +97,17 @@ namespace WebovaAplikace.Controllers
             await iUnitOfWork.CompleteAsync();
             return Request.CreateResponse(HttpStatusCode.OK, entity);
         }
-        
+
         //DELETE Customer
         [HttpDelete]
-        [DisableCors]
-        public async Task<HttpResponseMessage> DeleteCustomer([FromUri]int id)
+        //[DisableCors]
+        [Route("api/Customer/Delete/{Id}")]
+        public async Task<HttpResponseMessage> DeleteCustomer([FromUri]int Id)
         {
-            Customer entity = await iUnitOfWork.Customers.GetAsync(id);
+            Customer entity = await iUnitOfWork.Customers.GetAsync(Id);
             if (entity == null)
             {
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, $"zaměstnanec s tímto Id: {id} neexistuje");
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, $"zaměstnanec s tímto Id: {Id} neexistuje");
             }
 
             iUnitOfWork.Customers.Remove(entity);

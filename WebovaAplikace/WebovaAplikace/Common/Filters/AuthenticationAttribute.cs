@@ -14,10 +14,10 @@ using WebovaAplikace.Common.Authentication.Implementations;
 
 namespace WebovaAplikace.Common.Filters
 {
-    
-    
+
+
     public class BasicAuthenticationAttribute : AuthorizationFilterAttribute
-    {       
+    {
         public override void OnAuthorization(HttpActionContext actionContext)
         {
             if (actionContext.Request.Headers.Authorization == null)
@@ -32,7 +32,7 @@ namespace WebovaAplikace.Common.Filters
                 string[] emailPasswordArray = decodedAuthenticationToken.Split(':');
                 string email = emailPasswordArray[0];
                 string password = emailPasswordArray[1];
-                
+
                 if (EmployeeSecurity.Login(email, password))
                 {
                     Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(email), null);
@@ -44,7 +44,7 @@ namespace WebovaAplikace.Common.Filters
                 }
 
             }
-            
+
         }
     }
 }

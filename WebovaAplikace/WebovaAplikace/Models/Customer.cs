@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace WebovaAplikace.Models
 {
-    [Table("Customers")]
+ 
     public class Customer
     {
         public int CustomerId { get; set; }

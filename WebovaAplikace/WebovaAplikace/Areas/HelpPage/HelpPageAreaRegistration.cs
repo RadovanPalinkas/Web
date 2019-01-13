@@ -17,7 +17,7 @@ namespace WebovaAplikace.Areas.HelpPage
         {
             context.MapRoute(
                 "HelpPage_Default",
-                "Help/{action}/{apiId}",
+                "Api/Help/{action}/{apiId}",
                 new { controller = "Help", action = "Index", apiId = UrlParameter.Optional });
 
             HelpPageConfig.Register(GlobalConfiguration.Configuration);
